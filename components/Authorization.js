@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, TextInput, Button} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default class Authorization extends React.Component {
   constructor(props) {
@@ -11,7 +11,6 @@ export default class Authorization extends React.Component {
     const { text } = this.state;
     const { signIn, dispatch, login } = this.props;
     console.log('login', login);
-    
     return (
       <View style={styles.container}>
         <Text style={{color: 'red', fontWeight: 'bold', fontSize: 60}}>
