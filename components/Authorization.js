@@ -10,7 +10,6 @@ export default class Authorization extends React.Component {
   render() {
     const { text } = this.state;
     const { signIn, dispatch, login } = this.props;
-    console.log('login', login);
     return (
       <View style={styles.container}>
         <Text style={{color: 'red', fontWeight: 'bold', fontSize: 60}}>

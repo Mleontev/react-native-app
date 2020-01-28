@@ -4,8 +4,6 @@ import { Text } from 'react-native';
 
 export default class Header extends React.Component {
   render() {
-    console.log(11111111);
-    console.log(this.props.login);
     return (
       <HeaderNative
         containerStyle={{ backgroundColor: '#ff0000' }}

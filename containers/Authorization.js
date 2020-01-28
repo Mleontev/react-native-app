@@ -4,7 +4,6 @@ import { signIn } from '../actions/index';
 
 export default connect(
   state => {
-    console.log('state', state);
     return {login: state.login};
   },
   dispatch => {
