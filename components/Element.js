@@ -2,15 +2,20 @@ import React from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 
 export default class Element extends React.Component {
-  static navigationOptions = {
-    title: 'График',
-    headerStyle: {
-      backgroundColor: 'red',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      color: 'white',
-    },
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'График',
+      headerStyle: {
+        backgroundColor: 'red',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: 'white',
+      },
+      headerRight: () => (
+        <Text style={styles.loginText}>{navigation.getParam('log')}</Text>
+      ),
+    };
   };
   render() {
     const { navigation, dispatch, login, signOut } = this.props;
@@ -85,5 +90,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'left',
     padding: 10,
+  },
+  loginText: {
+    fontSize: 22,
+    color: 'white',
+    paddingRight: 10,
   },
 });

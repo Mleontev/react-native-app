@@ -2,17 +2,26 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 
 export default class Header extends React.Component {
-  static navigationOptions = {
-    title: 'Список',
-    headerStyle: {
-      backgroundColor: 'red',
-    },
-    headerTitleStyle: {
-      color: 'white',
-    },
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerLeft: () => null,
+      title: 'Список',
+      headerStyle: {
+        backgroundColor: 'red',
+      },
+      headerTitleStyle: {
+        color: 'white',
+      },
+      headerBackTitleStyle: {
+        headerBackTitleVisible: false,
+      },
+      headerRight: () => (
+        <Text style={styles.loginText}>{navigation.getParam('log')}</Text>
+      ),
+    };
   };
   render() {
-    const {lists, navigation} = this.props;
+    const { lists, navigation, login } = this.props;
     return (
       <View style={styles.container}>
         {lists.map(item => (
@@ -23,6 +32,7 @@ export default class Header extends React.Component {
               navigation.navigate('Elem', {
                 title: item.title,
                 desc: item.description,
+                log: login
               });
             }}>
             <Text style={styles.text}>{item.title}</Text>
@@ -48,5 +58,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
+  },
+  loginText: {
+    fontSize: 22,
+    color: 'white',
+    paddingRight: 10,
   },
 });

@@ -23,10 +23,9 @@ export default class Authorization extends React.Component {
   }
   render() {
     const { text } = this.state;
-    const { signIn, dispatch, navigation } = this.props;
+    const { signIn, dispatch, navigation, login } = this.props;
     const inputLog = React.createRef();
     const inputPw = React.createRef();
-
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.title}>Вход</Text>
@@ -41,7 +40,6 @@ export default class Authorization extends React.Component {
         </Text>
         <Input
           placeholder="Логин"
-          required
           label="Логин"
           containerStyle={styles.input}
           labelStyle={styles.label}
@@ -60,7 +58,9 @@ export default class Authorization extends React.Component {
             inputLog.current.clear();
             inputPw.current.clear();
             dispatch(signIn(text));
-            return navigation.navigate('Li');
+            return navigation.navigate('Li', {
+              log: text,
+            });
           }}>
           <Text style={styles.textButton}>Войти</Text>
         </TouchableOpacity>
