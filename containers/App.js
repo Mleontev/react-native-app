@@ -1,23 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack'
+
 import Authorization from '../containers/Authorization';
 import List from '../containers/List';
-import { connect } from 'react-redux';
-import { NativeRouter, Switch, Route } from 'react-router-native';
+import Element from '../containers/Element';
+
+const RootStack = createStackNavigator(
+  {
+    Auth: Authorization,
+    Li: List,
+    Elem: Element,
+  },
+  {
+    initialRouteName: 'Auth',
+  },
+);
+
+const AppContainer = createAppContainer(RootStack);
 
 class App extends React.Component {
   render() {
-    return (
-      <NativeRouter>
-        <Switch>
-          <Route exact patch="/" component={Authorization} />
-          <Route exact patch="/list" component={List} />
-        </Switch>
-      </NativeRouter>
-    );
+    return <AppContainer />;
   }
 }
 
 export default connect(state => {
-  console.log('state', state);
   return {login: state.login};
 })(App);

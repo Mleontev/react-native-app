@@ -1,33 +1,47 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { Input  } from 'react-native-elements';
-
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+} from 'react-native';
+import { Input } from 'react-native-elements';
 
 export default class Authorization extends React.Component {
+  static navigationOptions = {
+    title: 'Вход в личный кабинет',
+    headerStyle: {
+      backgroundColor: 'red',
+    },
+    headerTitleStyle: {
+      color: 'white',
+    },
+  };
   constructor(props) {
     super(props);
-    this.state = { text: '' };
+    this.state = {text: ''};
   }
-
   render() {
     const { text } = this.state;
-    const { signIn, dispatch, history } = this.props;
-    // console.log(this.props.location);
+    const { signIn, dispatch, navigation } = this.props;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.title}>Вход</Text>
         <Text style={styles.text}>
           Согласно классификации М. Вебера, форма политического сознания
           предсказуема. Политическая психология, согласно традиционным
-          представлениям, символизирует системный культ личности.
+          представлениям, символизирует системный культ личности. Согласно
+          классификации М. Вебера, форма политического сознания предсказуема.
+          Политическая психология, согласно традиционным представлениям,
+          символизирует системный культ личности. Согласно классификации М.
+          Вебера, форма политического сознания предсказуема.
         </Text>
         <Input
           placeholder="Логин"
           label="Логин"
           containerStyle={styles.input}
           labelStyle={styles.label}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
+          onChangeText={text => this.setState({text})}
         />
         <Input
           placeholder="Пароль"
@@ -36,10 +50,13 @@ export default class Authorization extends React.Component {
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => dispatch(signIn(text))}>
+          onPress={() => {
+            dispatch(signIn(text));
+            return navigation.navigate('Li');
+          }}>
           <Text style={styles.textButton}>Войти</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -50,12 +67,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 0,
   },
   button: {
     marginTop: 17,
     borderWidth: 1,
     width: 250,
-    textAlign: 'left',
     backgroundColor: 'red',
     borderRadius: 8,
   },
@@ -85,6 +102,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     color: 'white',
-    fontWeight: 'bold',
   },
 });

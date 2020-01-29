@@ -1,4 +1,4 @@
-import { SIGN_IN } from '../constants/ActionTypes';
+import { SIGN_IN, SIGN_OUT } from '../constants/ActionTypes';
 
 const initialState = {
   login: '',
@@ -11,7 +11,7 @@ const initialState = {
     {
       id: 2,
       title: 'кот',
-      description: 'зеленый',
+      description: 'существенных недостатков, таких как экзогенная норма сбережения и нереалистичная оценка ставки процента в развивающихся странах. Но, несмотря на эти недостатки, именно её считают отправной точкой для всех современных моделей экономического роста, которым она дала необходимую математическую базу для анализа темпов изменения капитала. Модель оказала влияние на всю макроэкономическую теорию.',
     },
     {
       id: 3,
@@ -24,12 +24,15 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SIGN_IN:
-      let s = {
+      return {
         ...state,
         login: action.login,
       };
-      console.log(action.login);
-      return s;
+    case SIGN_OUT:
+      return {
+        ...state,
+        login: '',
+      };
 
     default:
       return state;

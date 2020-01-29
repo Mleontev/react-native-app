@@ -1,23 +1,42 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 
 export default class Header extends React.Component {
+  static navigationOptions = {
+    title: 'Список',
+    headerStyle: {
+      backgroundColor: 'red',
+    },
+    headerTitleStyle: {
+      color: 'white',
+    },
+  };
   render() {
-    const {lists} = this.props;
-    return lists.map(item => (
-      <TouchableOpacity style={styles.button}>
-        <Text key={item.id} style={styles.text}>
-          {item.title}
-        </Text>
-      </TouchableOpacity>
-    ));
+    const {lists, navigation} = this.props;
+    return (
+      <View style={styles.container}>
+        {lists.map(item => (
+          <TouchableOpacity
+            key={item.id}
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate('Elem', {
+                title: item.title,
+                desc: item.description,
+              });
+            }}>
+            <Text style={styles.text}>{item.title}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '95%',
-    margin: 10,
+    flex: 1,
+    backgroundColor: '#fff',
   },
   button: {
     borderWidth: 1,
