@@ -65,13 +65,13 @@ export default class Authorization extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            console.log(text);
             inputLog.current.clear();
             inputPw.current.clear();
             dispatch(signIn(text));
-            return navigation.navigate('Li', {
+            navigation.navigate('Li', {
               log: text,
             });
+            this.setState({ text: '' });
           }}>
           <Text style={styles.textButton}>Войти</Text>
         </TouchableOpacity>
