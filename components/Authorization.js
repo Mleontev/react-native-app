@@ -20,6 +20,8 @@ export default class Authorization extends React.Component {
   constructor(props) {
     super(props);
     this.state = {text: ''};
+    this.inputLog = React.createRef();
+    this.inputPw = React.createRef();
   }
 
   handleInputLogin(text) {
@@ -31,11 +33,20 @@ export default class Authorization extends React.Component {
     }
   }
 
+  auth(text) {
+    const { signIn, dispatch, navigation } = this.props;
+    this.inputLog.current.clear();
+    this.inputPw.current.clear();
+
+    dispatch(signIn(text));
+    navigation.navigate('Li', {
+      log: text,
+    });
+    this.setState({ text: '' });
+  }
+
   render() {
     const { text } = this.state;
-    const { signIn, dispatch, navigation } = this.props;
-    const inputLog = React.createRef();
-    const inputPw = React.createRef();
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.title}>Вход</Text>
@@ -45,34 +56,23 @@ export default class Authorization extends React.Component {
           представлениям, символизирует системный культ личности. Согласно
           классификации М. Вебера, форма политического сознания предсказуема.
           Политическая психология, согласно традиционным представлениям,
-          символизирует системный культ личности. Согласно классификации М.
-          Вебера, форма политического сознания предсказуема.
+          символизирует системный культ личности.
         </Text>
         <Input
           placeholder="Логин"
           label="Логин"
           containerStyle={styles.input}
           labelStyle={styles.label}
-          ref={inputLog}
           onChangeText={text => this.handleInputLogin(text)}
+          ref={this.inputLog}
         />
         <Input
           placeholder="Пароль"
           containerStyle={styles.input}
           secureTextEntry={true}
-          ref={inputPw}
+          ref={this.inputPw}
         />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            inputLog.current.clear();
-            inputPw.current.clear();
-            dispatch(signIn(text));
-            navigation.navigate('Li', {
-              log: text,
-            });
-            this.setState({ text: '' });
-          }}>
+        <TouchableOpacity style={styles.button} onPress={() => this.auth(text)}>
           <Text style={styles.textButton}>Войти</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -111,6 +111,8 @@ const styles = StyleSheet.create({
     color: 'darkgray',
     fontSize: 15,
     marginBottom: 25,
+    marginLeft: 15,
+    marginRight: 15,
   },
   input: {
     paddingLeft: 60,

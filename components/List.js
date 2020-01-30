@@ -32,7 +32,7 @@ export default class Header extends React.Component {
               navigation.navigate('Elem', {
                 title: item.title,
                 desc: item.description,
-                log: login
+                log: login,
               });
             }}>
             <Text style={styles.text}>{item.title}</Text>

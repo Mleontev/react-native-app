@@ -17,8 +17,14 @@ export default class Element extends React.Component {
       ),
     };
   };
+  logOut(login) {
+    const { navigation, dispatch, signOut } = this.props;
+    dispatch(signOut(login));
+    navigation.navigate('Auth');
+  }
+
   render() {
-    const { navigation, dispatch, login, signOut } = this.props;
+    const { navigation, login } = this.props;
     return (
       <>
         <View style={styles.container}>
@@ -33,10 +39,7 @@ export default class Element extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.buttonLogOut}
-            onPress={() => {
-              dispatch(signOut(login));
-              return navigation.navigate('Auth');
-            }}>
+            onPress={() => this.logOut(login)}>
             <Text style={styles.textLogOut}>Выйти из аккаунта</Text>
           </TouchableOpacity>
         </View>
@@ -83,13 +86,19 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    margin: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    marginRight: 10,
+    marginLeft: 20,
   },
   desc: {
     color: 'gray',
     fontSize: 20,
     textAlign: 'left',
-    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
   },
   loginText: {
     fontSize: 22,
