@@ -22,6 +22,15 @@ export default class Authorization extends React.Component {
     this.state = {text: ''};
   }
 
+  handleInputLogin(text) {
+    let shortText = text.slice(0, 15);
+    if (shortText.length < text.length) {
+      this.setState({ text: `${shortText}...` });
+    } else {
+      this.setState({text});
+    }
+  }
+
   render() {
     const { text } = this.state;
     const { signIn, dispatch, navigation } = this.props;
@@ -45,14 +54,7 @@ export default class Authorization extends React.Component {
           containerStyle={styles.input}
           labelStyle={styles.label}
           ref={inputLog}
-          onChangeText={text => {
-            let shortText = text.slice(0, 15);
-            if (shortText.length < text.length) {
-              this.setState({ text: `${shortText}...` });
-            } else {
-              this.setState({text});
-            }
-          }}
+          onChangeText={text => this.handleInputLogin(text)}
         />
         <Input
           placeholder="Пароль"
