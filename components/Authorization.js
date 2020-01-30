@@ -33,7 +33,8 @@ export default class Authorization extends React.Component {
     }
   }
 
-  auth(text) {
+  auth = () => {
+    const { text } = this.state;
     const { signIn, dispatch, navigation } = this.props;
     this.inputLog.current.clear();
     this.inputPw.current.clear();
@@ -43,7 +44,7 @@ export default class Authorization extends React.Component {
       log: text,
     });
     this.setState({ text: '' });
-  }
+  };
 
   render() {
     const { text } = this.state;
@@ -72,7 +73,7 @@ export default class Authorization extends React.Component {
           secureTextEntry={true}
           ref={this.inputPw}
         />
-        <TouchableOpacity style={styles.button} onPress={() => this.auth(text)}>
+        <TouchableOpacity style={styles.button} onPress={this.auth}>
           <Text style={styles.textButton}>Войти</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>

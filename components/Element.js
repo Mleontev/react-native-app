@@ -17,14 +17,14 @@ export default class Element extends React.Component {
       ),
     };
   };
-  logOut(login) {
-    const { navigation, dispatch, signOut } = this.props;
+  logOut = () => {
+    const { navigation, dispatch, signOut, login } = this.props;
     dispatch(signOut(login));
     navigation.navigate('Auth');
-  }
+  };
 
   render() {
-    const { navigation, login } = this.props;
+    const { navigation } = this.props;
     return (
       <>
         <View style={styles.container}>
@@ -37,9 +37,7 @@ export default class Element extends React.Component {
             onPress={() => navigation.goBack()}>
             <Text style={styles.textBack}>Назад</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonLogOut}
-            onPress={() => this.logOut(login)}>
+          <TouchableOpacity style={styles.buttonLogOut} onPress={this.logOut}>
             <Text style={styles.textLogOut}>Выйти из аккаунта</Text>
           </TouchableOpacity>
         </View>

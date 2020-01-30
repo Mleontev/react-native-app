@@ -4,7 +4,10 @@ import { signOut } from '../actions/index';
 
 export default connect(
   state => {
-    return { lists: state.lists, login: state.login };
+    return {
+      lists: state.lists,
+      login: state.login,
+    };
   },
   dispatch => {
     return {

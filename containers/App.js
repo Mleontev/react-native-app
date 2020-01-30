@@ -27,5 +27,7 @@ class App extends React.Component {
 }
 
 export default connect(state => {
-  return {login: state.login};
+  return {
+    login: state.login,
+  };
 })(App);
