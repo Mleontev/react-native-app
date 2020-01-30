@@ -21,9 +21,10 @@ export default class Authorization extends React.Component {
     super(props);
     this.state = {text: ''};
   }
+
   render() {
     const { text } = this.state;
-    const { signIn, dispatch, navigation, login } = this.props;
+    const { signIn, dispatch, navigation } = this.props;
     const inputLog = React.createRef();
     const inputPw = React.createRef();
     return (
@@ -44,7 +45,14 @@ export default class Authorization extends React.Component {
           containerStyle={styles.input}
           labelStyle={styles.label}
           ref={inputLog}
-          onChangeText={text => this.setState({text})}
+          onChangeText={text => {
+            let shortText = text.slice(0, 15);
+            if (shortText.length < text.length) {
+              this.setState({ text: `${shortText}...` });
+            } else {
+              this.setState({text});
+            }
+          }}
         />
         <Input
           placeholder="Пароль"
@@ -55,6 +63,7 @@ export default class Authorization extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
+            console.log(text);
             inputLog.current.clear();
             inputPw.current.clear();
             dispatch(signIn(text));

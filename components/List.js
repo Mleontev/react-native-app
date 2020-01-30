@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
   loginText: {
     fontSize: 22,
     color: 'white',
-    paddingRight: 10,
+    paddingRight: 8,
   },
 });
