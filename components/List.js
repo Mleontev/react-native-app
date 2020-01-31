@@ -20,6 +20,7 @@ export default class Header extends React.Component {
       ),
     };
   };
+  
   render() {
     const { lists, navigation, login } = this.props;
     return (

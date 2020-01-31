@@ -17,11 +17,13 @@ export default class Element extends React.Component {
       ),
     };
   };
+  
   logOut = () => {
     const { navigation, dispatch, signOut, login } = this.props;
     dispatch(signOut(login));
     navigation.navigate('Auth');
   };
+
   back = () => {
     const { navigation } = this.props;
     navigation.goBack();

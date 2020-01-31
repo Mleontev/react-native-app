@@ -17,9 +17,10 @@ export default class Authorization extends React.Component {
       color: 'white',
     },
   };
+
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.state = { text: '' };
     this.inputLog = React.createRef();
     this.inputPw = React.createRef();
   }
