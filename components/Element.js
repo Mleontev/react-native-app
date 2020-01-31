@@ -22,6 +22,10 @@ export default class Element extends React.Component {
     dispatch(signOut(login));
     navigation.navigate('Auth');
   };
+  back = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
+  };
 
   render() {
     const { navigation } = this.props;
@@ -32,9 +36,7 @@ export default class Element extends React.Component {
           <Text style={styles.desc}>{navigation.getParam('desc')}</Text>
         </View>
         <View style={styles.containerTwo}>
-          <TouchableOpacity
-            style={styles.buttonBack}
-            onPress={() => navigation.goBack()}>
+          <TouchableOpacity style={styles.buttonBack} onPress={this.back}>
             <Text style={styles.textBack}>Назад</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonLogOut} onPress={this.logOut}>

@@ -24,14 +24,14 @@ export default class Authorization extends React.Component {
     this.inputPw = React.createRef();
   }
 
-  handleInputLogin(text) {
+  handleInputLogin = (text) => {
     let shortText = text.slice(0, 15);
     if (shortText.length < text.length) {
       this.setState({ text: `${shortText}...` });
     } else {
       this.setState({text});
     }
-  }
+  };
 
   auth = () => {
     const { text } = this.state;
@@ -47,7 +47,6 @@ export default class Authorization extends React.Component {
   };
 
   render() {
-    const { text } = this.state;
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.title}>Вход</Text>
@@ -64,7 +63,7 @@ export default class Authorization extends React.Component {
           label="Логин"
           containerStyle={styles.input}
           labelStyle={styles.label}
-          onChangeText={text => this.handleInputLogin(text)}
+          onChangeText={this.handleInputLogin}
           ref={this.inputLog}
         />
         <Input
