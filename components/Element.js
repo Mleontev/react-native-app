@@ -75,16 +75,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   textBack: {
-    fontSize: 20,
+    fontSize: 17,
     color: 'red',
     textAlign: 'center',
-    paddingTop: 4,
+    paddingTop: 5,
   },
   textLogOut: {
-    fontSize: 20,
+    fontSize: 17,
     color: 'white',
     textAlign: 'center',
-    paddingTop: 6,
+    paddingTop: 7,
   },
   title: {
     fontSize: 25,
